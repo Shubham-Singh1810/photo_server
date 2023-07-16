@@ -5,7 +5,9 @@ require("dotenv").config();
 
 const user = require("./routes/user.route");
 const post = require("./routes/post.route");
-const subscription = require("./routes/subscription.route")
+const subscription = require("./routes/subscription.route");
+const event = require("./routes/event.route");
+const album = require("./routes/album.route")
 
 // connecting with database
 const mongoose = require("mongoose");
@@ -25,6 +27,8 @@ const PORT = process.env.PORT || 3005;
 app.use("/user", user);
 app.use("/post", post);
 app.use("/subscription", subscription);
+app.use("/event", event);
+app.use("/album", album);
 app.listen(PORT, ()=>{
     console.log("app is running at port", PORT)
 })
