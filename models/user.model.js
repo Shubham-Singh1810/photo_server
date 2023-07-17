@@ -5,28 +5,36 @@ const userSchema = mongoose.Schema(
     password: {
       type: String,
     },
-    phoneNumber:{
-      type : Number,
+    phoneNumber: {
+      type: Number,
     },
     fullName: {
       type: String,
     },
-    profileImg:{
-      type :String
+    profileImg: {
+      type: String,
     },
-    email:{
-      type :String
+    email: {
+      type: String,
     },
-    role:{
-      type :String
+    role: {
+      type: String,
     },
-    subscription_staus:{
-      type :String,
-      default : "Inactive"
+    user_staus: {
+      type: String,
+      default: "active",
     },
-    subscription_expiry_date:{
-      type :Date
-    }
+    subscriptionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Subscription",
+    },
+    subscription_staus: {
+      type: String,
+      default: "Inactive",
+    },
+    subscription_expiry_date: {
+      type: Date,
+    },
   },
   { timestamps: { createdAt: "createdAt" } }
 );

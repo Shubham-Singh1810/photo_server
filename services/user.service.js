@@ -39,7 +39,27 @@ module.exports = {
     let result ={};
     try {
       result.data = await User.find({});
+      result.message = "Users List data retrived successfully"
+    } catch (error) {
+      result.err = error
+    }
+    return result
+  },
+  getUser: async function(id){
+    let result ={};
+    try {
+      result.data=  await User.find({_id: id})
       result.message = "User data retrived successfully"
+    } catch (error) {
+      result.err = error
+    }
+    return result
+  },
+  update: async function(body){
+    let result ={};
+    try {
+      result.data = await User.findByIdAndUpdate(body._id, { $set: body }, { new: true });
+      result.message = "User updated retrived successfully"
     } catch (error) {
       result.err = error
     }

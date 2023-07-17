@@ -24,4 +24,12 @@ module.exports = {
         let result = await userServ.getUserList(req.body);
         util.sendResponse(result, req, res);
     },
+    getUser : async function(req, res){
+        let result = await userServ.getUser(req.params.id);
+        util.sendResponse(result, req, res);
+    },
+    update : async function(req, res){
+        let result = await userServ.update(req.body);
+        util.sendResponse(result, req, res);
+    },
 }
