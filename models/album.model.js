@@ -9,6 +9,16 @@ const albumSchema = mongoose.Schema(
     },
     name: { type: String },
     albumImgUrl: { type: String },
+    isLive: {
+      type: Boolean,
+      default: true,
+    },
+    laterDate: {
+      type: Date,
+    },
+    laterTime: {
+      type: Date,
+    },
   },
   { timestamps: { createdAt: "createdAt" } }
 );

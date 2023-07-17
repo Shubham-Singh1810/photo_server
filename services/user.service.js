@@ -10,7 +10,7 @@ module.exports = {
         result.message ="Phone number is already registered"
       }
       else{
-        result.data = await new User(body).save();
+        await new User(body).save();
         result.message ="User registered successfully"
       }
     } catch (error) {
@@ -21,7 +21,7 @@ module.exports = {
   login: async function (body) {
     let result = {};
     try {
-     let logedUser = await User.findOne(body);
+     let logedUser = await User.findOne(body).select("-password");;
       if (logedUser) {
         console.log(logedUser)
         result.data = logedUser;

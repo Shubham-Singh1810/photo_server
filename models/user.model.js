@@ -20,6 +20,13 @@ const userSchema = mongoose.Schema(
     role:{
       type :String
     },
+    subscription_staus:{
+      type :String,
+      default : "Inactive"
+    },
+    subscription_expiry_date:{
+      type :Date
+    }
   },
   { timestamps: { createdAt: "createdAt" } }
 );
