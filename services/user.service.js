@@ -48,7 +48,7 @@ module.exports = {
   getUser: async function(id){
     let result ={};
     try {
-      result.data=  await User.find({_id: id})
+      result.data=  await User.findOne({_id: id})
       result.message = "User data retrived successfully"
     } catch (error) {
       result.err = error
