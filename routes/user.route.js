@@ -7,7 +7,7 @@ router.route("/signUp").post(imgUpload.single("profileImg"), userController.sign
 router.route("/login").post(userController.login);
 router.route("/getUserList").get(userController.getUserList);
 router.route("/getUser/:id").get(userController.getUser);
-router.route("/update").put(userController.update)
+router.route("/updateStatus").put(userController.update)
 
 
 

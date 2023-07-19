@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema(
     },
     user_staus: {
       type: String,
-      default: "active",
+      default: "Active",
     },
     subscriptionId: {
       type: mongoose.Schema.Types.ObjectId,

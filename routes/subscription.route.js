@@ -5,7 +5,7 @@ const auth = require("../middleware/auth")
 
 router.route("/create").post(auth, subscriptionControl.create);
 router.route("/getAll").get(auth, subscriptionControl.getAll);
-router.route("/getById/:id").get(auth, subscriptionControl.getById);
+router.route("/getById/:id").get( subscriptionControl.getById);
 router.route("/:id").delete(auth, subscriptionControl.delete);
 router.route("/update").put(auth, subscriptionControl.update);
 
