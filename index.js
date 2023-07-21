@@ -7,7 +7,8 @@ const user = require("./routes/user.route");
 const post = require("./routes/post.route");
 const subscription = require("./routes/subscription.route");
 const event = require("./routes/event.route");
-const album = require("./routes/album.route")
+const album = require("./routes/album.route");
+const member = require("./routes/member.route")
 
 // connecting with database
 const mongoose = require("mongoose");
@@ -29,6 +30,7 @@ app.use("/post", post);
 app.use("/subscription", subscription);
 app.use("/event", event);
 app.use("/album", album);
+app.use("/member", member);
 app.listen(PORT, ()=>{
     console.log("app is running at port", PORT)
 })

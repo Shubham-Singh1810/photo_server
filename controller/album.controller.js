@@ -3,9 +3,10 @@ const util = require("../utils/util")
 require("dotenv").config();
 module.exports ={
     create : async function(req, res){
-        let albumImgUrl = process.env.API_BASE_URL+req.file.path
+        console.log(req.file)
+        let albumThumbImg = process.env.API_BASE_URL+req.file.path
         let albumDetails = {
-            albumImgUrl : albumImgUrl,
+            albumThumbImg : albumThumbImg,
             name: req.body.name,
             eventId : req.body.eventId
         }

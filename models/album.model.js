@@ -7,8 +7,8 @@ const albumSchema = mongoose.Schema(
       ref: "Event",
       required: true,
     },
-    name: { type: String },
-    albumImgUrl: { type: String },
+    albumName: { type: String },
+    albumThumbImg: { type: String },
     isLive: {
       type: Boolean,
       default: true,

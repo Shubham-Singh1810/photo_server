@@ -1,6 +1,5 @@
 const eventServ = require("../services/event.service");
 const util = require("../utils/util");
-const imgUpload = require("../utils/multer");
 require("dotenv").config();
 module.exports ={
     create : async function(req, res){
