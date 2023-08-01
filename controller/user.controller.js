@@ -32,4 +32,8 @@ module.exports = {
         let result = await userServ.update(req.body);
         util.sendResponse(result, req, res);
     },
+    isMobileExist : async function(req, res){
+        let result = await userServ.isMobileExist(req.body);
+        util.sendResponse(result, req, res);
+    },
 }

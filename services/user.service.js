@@ -21,7 +21,7 @@ module.exports = {
   login: async function (body) {
     let result = {};
     try {
-     let logedUser = await User.findOne(body).select("-password");;
+     let logedUser = await User.findOne(body).select("-password");
       if (logedUser) {
         console.log(logedUser)
         result.data = logedUser;
@@ -60,6 +60,22 @@ module.exports = {
     try {
       result.data = await User.findByIdAndUpdate(body._id, { $set: body }, { new: true });
       result.message = "User updated retrived successfully"
+    } catch (error) {
+      result.err = error
+    }
+    return result
+  },
+  isMobileExist: async function(body){
+    let result ={};
+    try {
+      let user;
+      user = await User.findOne({phoneNumber: body.phoneNumber});
+      if(user){
+         result.message = "Mobile no. already exist"
+      }
+      else{
+        result.message =  "Mobile no. is unique"
+      }
     } catch (error) {
       result.err = error
     }
