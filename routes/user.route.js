@@ -8,6 +8,7 @@ router.route("/login").post(userController.login);
 router.route("/getUserList").get(userController.getUserList);
 router.route("/getUser/:id").get(userController.getUser);
 router.route("/updateStatus").put(userController.update);
+router.route("/updateUser").put(imgUpload.single("profileImg"), userController.updateUser);
 router.route("/isMobileExist").post(userController.isMobileExist);
 
 

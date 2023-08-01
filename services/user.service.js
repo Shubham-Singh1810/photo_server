@@ -56,6 +56,7 @@ module.exports = {
     return result
   },
   update: async function(body){
+    console.log(body)
     let result ={};
     try {
       result.data = await User.findByIdAndUpdate(body._id, { $set: body }, { new: true });
