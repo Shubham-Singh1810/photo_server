@@ -4,7 +4,7 @@ const util = require("../utils/util")
 require("dotenv").config();
 module.exports = {
     signUp: async function (req, res) {
-        let profileImg = process.env.API_BASE_URL + req.file.path
+        let profileImg = process.env.F_B_U + req.file.path
         let userDetails = {
             profileImg: profileImg,
             fullName: req.body.fullName,
@@ -35,7 +35,7 @@ module.exports = {
     updateUser: async function (req, res) {
         let userDetails
         if (req.file) {
-            let profileImg = process.env.API_BASE_URL + req.file.path
+            let profileImg = process.env.F_B_U + req.file.path
             userDetails = {
                 profileImg: profileImg,
                 fullName: req.body.fullName,

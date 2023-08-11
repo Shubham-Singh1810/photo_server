@@ -4,7 +4,7 @@ require("dotenv").config();
 module.exports ={
     create : async function(req, res){
         console.log(req.file)
-        let albumThumbImg = process.env.API_BASE_URL+req.file.path
+        let albumThumbImg = process.env.F_B_U+req.file.path
         let albumDetails = {
             albumThumbImg : albumThumbImg,
             name: req.body.name,

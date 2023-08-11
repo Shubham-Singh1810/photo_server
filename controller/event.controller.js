@@ -3,7 +3,7 @@ const util = require("../utils/util");
 require("dotenv").config();
 module.exports ={
     create : async function(req, res){
-        let eventImgUrl = process.env.API_BASE_URL+req.file.path
+        let eventImgUrl = process.env.F_B_U+req.file.path
         let eventDetails = {
             eventImgUrl : eventImgUrl,
             name: req.body.name,
@@ -20,7 +20,7 @@ module.exports ={
         util.sendResponse(result, req, res);
     },
     update : async function(req, res){
-        let eventImgUrl = process.env.API_BASE_URL+req.file.path
+        let eventImgUrl = process.env.F_B_U+req.file.path
         let eventDetails = {
             eventImgUrl : eventImgUrl,
             name: req.body.name,

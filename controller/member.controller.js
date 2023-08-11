@@ -4,7 +4,7 @@ const util = require("../utils/util");
 require("dotenv").config();
 module.exports ={
     create : async function(req, res){
-        let image = process.env.API_BASE_URL+req.file.path
+        let image = process.env.F_B_U+req.file.path
         let memberDetails = {
             image : image,
             email: req.body.email,

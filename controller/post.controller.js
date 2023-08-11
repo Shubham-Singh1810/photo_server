@@ -5,7 +5,7 @@ module.exports = {
   create: async function (req, res) {
     let postImg = [];
     for (let i = 0; i < req.files.length; i++) {
-      postImg[i] =(process.env.API_BASE_URL + req.files[i].path);
+      postImg[i] =(process.env.F_B_U + req.files[i].path);
     }
     console.log(postImg);
     let postDetails = {
