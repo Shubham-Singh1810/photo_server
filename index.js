@@ -13,7 +13,7 @@ const comment = require("./routes/comment.route");
 
 // connecting with database
 const mongoose = require("mongoose");
-mongoose.connect(process.env.M_B_A
+mongoose.connect("mongodb+srv://shubham1810:mKQjrvgOyLBF5vG4@cluster0.5bhod07.mongodb.net/createrHouse?retryWrites=true&w=majority"
 ).then(()=>{
     console.warn("db connection done")
 });
