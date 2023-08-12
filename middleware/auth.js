@@ -4,7 +4,7 @@ const auth = async (req, res, next) => {
   let header = req.header("Authorization");
   if (header) {
     let token = req.header("Authorization").replace("Bearer ", "");
-    jwt.verify(token, process.env.JWT_KEY, (err, valid) => {
+    jwt.verify(token, process.env.J_K, (err, valid) => {
       if (err) {
         res.send(err);
       } else {
