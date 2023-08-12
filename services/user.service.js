@@ -25,12 +25,13 @@ module.exports = {
       if (logedUser) {
         console.log(logedUser)
         result.data = logedUser;
-        result.token = await jwt.sign( {logedUser} , process.env.JWT_KEY);
+        result.token = await jwt.sign( {logedUser} , process.env.J_K);
         result.message = "You are logged in successfully";
       } else {
         result.message = "Invalid login details";
       }
     } catch (error) {
+      console.log(error)
       result.err = error;
     }
     return result;
