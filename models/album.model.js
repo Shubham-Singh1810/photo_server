@@ -5,7 +5,7 @@ const albumSchema = mongoose.Schema(
     eventId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Event",
-      required: true,
+      // required: true,
     },
     albumName: { type: String },
     albumThumbImg: { type: String },

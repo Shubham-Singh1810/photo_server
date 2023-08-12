@@ -1,14 +1,19 @@
 const eventServ = require("../services/event.service");
 const util = require("../utils/util");
 require("dotenv").config();
+const cloudinary = require("../utils/cloudinary");
 module.exports ={
     create : async function(req, res){
-        let eventImgUrl = process.env.F_B_U+req.file.path
-        let eventDetails = {
-            eventImgUrl : eventImgUrl,
-            name: req.body.name,
-        }
-        let result = await eventServ.create(eventDetails);
+        let eventImgUrl  = await
+        cloudinary.uploader.upload(req.file.path, function (err, result) {
+          if (err) {
+            return err;
+          }
+          else{
+            return result.data
+          }
+        });
+        let result = await eventServ.create({...req.body, eventImgUrl:eventImgUrl.url});
         util.sendResponse(result, req, res);
     },
     getAll : async function(req, res){
@@ -20,13 +25,16 @@ module.exports ={
         util.sendResponse(result, req, res);
     },
     update : async function(req, res){
-        let eventImgUrl = process.env.F_B_U+req.file.path
-        let eventDetails = {
-            eventImgUrl : eventImgUrl,
-            name: req.body.name,
-            _id: req.body._id
-        }
-        let result = await eventServ.update(eventDetails);
+        let eventImgUrl  = await
+        cloudinary.uploader.upload(req.file.path, function (err, result) {
+          if (err) {
+            return err;
+          }
+          else{
+            return result.data
+          }
+        });
+        let result = await eventServ.update({...req.body, eventImgUrl:eventImgUrl.url});
         util.sendResponse(result, req, res);
     },
     updateNameOnly : async function(req, res){

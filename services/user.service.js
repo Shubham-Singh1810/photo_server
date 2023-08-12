@@ -59,8 +59,8 @@ module.exports = {
     console.log(body)
     let result ={};
     try {
-      result.data = await User.findByIdAndUpdate(body._id, { $set: body }, { new: true });
-      result.message = "User updated retrived successfully"
+      result.data = await User.findByIdAndUpdate(body._id, { $set: body }, { new: true }).select("-password");
+      result.message = "User updated  successfully"
     } catch (error) {
       result.err = error
     }

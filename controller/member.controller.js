@@ -1,16 +1,20 @@
 const memberServ = require("../services/member.service");
 const util = require("../utils/util");
+const cloudinary = require("../utils/cloudinary");
 
 require("dotenv").config();
 module.exports ={
     create : async function(req, res){
-        let image = process.env.F_B_U+req.file.path
-        let memberDetails = {
-            image : image,
-            email: req.body.email,
-            name: req.body.name,
-        }
-        let result = await memberServ.create(memberDetails);
+        let image = await
+        cloudinary.uploader.upload(req.file.path, function (err, result) {
+          if (err) {
+            return err;
+          }
+          else{
+            return result.data
+          }
+        });
+        let result = await memberServ.create({...req.body, image:image});
         util.sendResponse(result, req, res);
     },
     getAll : async function(req, res){

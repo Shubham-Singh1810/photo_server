@@ -1,13 +1,25 @@
 const postServ = require("../services/post.service");
 const util = require("../utils/util");
 require("dotenv").config();
+const cloudinary = require("../utils/cloudinary");
 module.exports = {
   create: async function (req, res) {
-    let postImg = [];
+    let postArr = [];
     for (let i = 0; i < req.files.length; i++) {
-      postImg[i] =(process.env.F_B_U + req.files[i].path);
+      postArr[i] = await
+      cloudinary.uploader.upload(req.files[1].path, function (err, result) {
+        if (err) {
+          return err;
+        }
+        else{
+         return result 
+        }
+      });
     }
-    console.log(postImg);
+    let postImg =[];
+    for (let i=0; i<postArr.length; i++){
+      postImg[i] = postArr[i].url 
+    }
     let postDetails = {
       postImg: postImg,
       caption: req.body.caption,

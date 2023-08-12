@@ -2,9 +2,10 @@ const express = require("express");
 const router= express.Router();
 const memberController = require("../controller/member.controller")
 const imgUpload = require("../utils/multer");
-const auth = require("../middleware/auth")
+const auth = require("../middleware/auth");
+const upload = require("../utils/multer");
 
-router.route("/create").post(auth, imgUpload.single("image"), memberController.create);
+router.route("/create").post(auth, upload.single("image"), memberController.create);
 router.route("/getAll").get(auth, memberController.getAll);
 router.route("/getById/:id").get(auth, memberController.getEvent);
 // router.route("/update/").put(auth, imgUpload.single("eventImgUrl"),  memberController.update);
