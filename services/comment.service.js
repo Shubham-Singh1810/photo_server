@@ -6,9 +6,11 @@ module.exports = {
     let result = {};
     try {
       result.data = await Comment(body).save();
+      result.status = true;
       result.message = "Comment added successfully";
     } catch (error) {
       result.err = error;
+      result.status = false;
     }
     return result;
   },
@@ -18,9 +20,11 @@ module.exports = {
     try {
       result.data = await Comment.find(query).populate({path : "albumId"}).populate({path : "userId"}).populate({path : "postId"});
       result.message = "Comment list fatched successfully";
+      result.status = true;
       result.count = await Comment.count(query)
     } catch (error) {
       result.err = error;
+      result.status = false;
     }
     return result;
   },
@@ -29,8 +33,10 @@ module.exports = {
     try {
       result.data = await Comment.find({_id : id}).populate({path : "albumId"}).populate({path : "userId"}).populate({path : "postId"});
       result.message = "Comment list fatched successfully";
+      result.status = true;
     } catch (error) {
       result.err = error;
+      result.status = false;
     }
     return result;
   },
@@ -39,9 +45,10 @@ module.exports = {
     try {
       result.data = await Comment.findByIdAndDelete(id);
       result.message = "Comment deleted  successfully";
+      result.status = true;
     } catch (error) {
-        console.log(error)
       result.err = error;
+      result.status = false;
     }
     return result;
   },

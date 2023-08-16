@@ -6,9 +6,11 @@ module.exports = {
     let result = {};
     try {
       result.data = await Member(body).save();
+      result.status = true;
       result.message = "Member created successfully";
     } catch (error) {
       result.err = error;
+      result.status = false;
     }
     return result
   },
@@ -17,8 +19,10 @@ module.exports = {
     try {
       result.data = await Member.find();
       result.message = "Member list fatched successfully";
+      result.status = true;
     } catch (error) {
       result.err = error;
+      result.status = false;
     }
     return result
   },
@@ -27,8 +31,10 @@ module.exports = {
     try {
       result.data = await Member.findOne({_id: id});
       result.message = "Member data fatched successfully";
+      result.status = true;
     } catch (error) {
       result.err = error;
+      result.status = false;
     }
     return result
   },
@@ -37,8 +43,10 @@ module.exports = {
     try {
       result.data = await Member.findByIdAndUpdate(body._id, { $set: body }, { new: true });
       result.message = "Record Updated successfully";
+      result.status = true;
     } catch (error) {
       result.err = error;
+      result.status = false;
     }
     return result
   },
@@ -47,8 +55,10 @@ module.exports = {
     try {
       result.data = await Member.findByIdAndDelete(id);
       result.message = "Record Deleted Successfully";
+      result.status = true;
     } catch (error) {
       result.err = error.message;
+      result.status = true;
     }
     return result;
   },

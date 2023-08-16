@@ -6,8 +6,10 @@ module.exports = {
     try {
       result.data = await Post(body).save();
       result.message = "Post created successfully";
+      result.status = true;
     } catch (error) {
       result.err = error;
+      result.status = false;
     }
     return result
   },
@@ -15,9 +17,11 @@ module.exports = {
     console.log(id)
     let result = {}
     try {
-      result.data=  await Post.findOne({albumId : id}).populate({path : "albumId"})
+      result.data=  await Post.findOne({albumId : id}).populate({path : "albumId"});
+      result.message ="Post data fetched successfully"
+      result.status = true;
     } catch (error) {
-      console.log(error)
+      result.status = true;
       result.err = error
     }
     return result

@@ -8,13 +8,16 @@ module.exports = {
       let user = await User.findOne({phoneNumber: body.phoneNumber})
       if(user){
         result.message ="Phone number is already registered"
+        result.status = false;
       }
       else{
         await new User(body).save();
         result.message ="User registered successfully"
+        result.status = true;
       }
     } catch (error) {
       result.err = error;
+      result.status = false;
     }
     return result;
   },
@@ -23,15 +26,15 @@ module.exports = {
     try {
      let logedUser = await User.findOne(body).select("-password");
       if (logedUser) {
-        console.log(logedUser)
         result.data = logedUser;
         result.token = await jwt.sign( {logedUser} , process.env.J_K);
         result.message = "You are logged in successfully";
+        result.status = true;
       } else {
         result.message = "Invalid login details";
+        result.status = false;
       }
     } catch (error) {
-      console.log(error)
       result.err = error;
     }
     return result;
@@ -40,9 +43,11 @@ module.exports = {
     let result ={};
     try {
       result.data = await User.find({});
-      result.message = "Users List data retrived successfully"
+      result.message = "Users List data retrived successfully";
+      result.status = true;
     } catch (error) {
       result.err = error
+      result.status = false;
     }
     return result
   },
@@ -50,20 +55,23 @@ module.exports = {
     let result ={};
     try {
       result.data=  await User.findOne({_id: id})
-      result.message = "User data retrived successfully"
+      result.message = "User data retrived successfully";
+      result.status = true;
     } catch (error) {
-      result.err = error
+      result.err = error;
+      result.status = false;
     }
     return result
   },
   update: async function(body){
-    console.log(body)
     let result ={};
     try {
       result.data = await User.findByIdAndUpdate(body._id, { $set: body }, { new: true }).select("-password");
-      result.message = "User updated  successfully"
+      result.message = "User updated  successfully";
+      result.status = true;
     } catch (error) {
-      result.err = error
+      result.err = error;
+      result.status = false;
     }
     return result
   },
@@ -73,13 +81,16 @@ module.exports = {
       let user;
       user = await User.findOne({phoneNumber: body.phoneNumber});
       if(user){
-         result.message = "Mobile no. already exist"
+         result.message = "Mobile no. already exist";
+         result.status = false;
       }
       else{
         result.message =  "Mobile no. is unique"
+        result.status = true;
       }
     } catch (error) {
       result.err = error
+      result.status = true;
     }
     return result
   }

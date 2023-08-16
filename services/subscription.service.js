@@ -7,8 +7,10 @@ module.exports = {
     try {
       result.data = await new Subscription(body).save();
       result.message = "Plan added successfully";
+      result.status = true;
     } catch (error) {
       result.err = error.message;
+      result.status = false;
     }
     return result;
   },
@@ -17,8 +19,10 @@ module.exports = {
     try {
       result.data = await Subscription.find();
       result.message = "Get all data";
+      result.status = true;
     } catch (error) {
       result.err = error.message;
+      result.status = false;
     }
     return result;
   },
@@ -27,8 +31,10 @@ module.exports = {
     try {
       result.data = await Subscription.findOne({ _id: id });
       result.message = "Detail fetched successfully";
+      result.status = true;
     } catch (error) {
       result.err = error.message;
+      result.status = false;
     }
     return result;
   },
@@ -37,8 +43,10 @@ module.exports = {
     try {
       result.data = await Subscription.findByIdAndUpdate(body._id, { $set: body }, { new: true });
       result.message = "Record Updated Successfully";
+      result.status = true;
     } catch (error) {
       result.err = error.message;
+      result.status = false;
     }
     return result;
   },
@@ -47,8 +55,10 @@ module.exports = {
     try {
       result.data = await Subscription.findByIdAndDelete(id);
       result.message = "Record Deleted Successfully";
+      result.status = true;
     } catch (error) {
       result.err = error.message;
+      result.status = false;
     }
     return result;
   },
